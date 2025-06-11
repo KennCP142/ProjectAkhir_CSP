@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 text-orange-600 hover:text-orange-700 transition-colors">
               <ChefHat className="h-8 w-8" />
-              <span className="text-xl font-bold">Delicious</span>
+              <span className="text-xl font-bold">QUICKBITE</span>
             </Link>
 
             {/* Navigation */}

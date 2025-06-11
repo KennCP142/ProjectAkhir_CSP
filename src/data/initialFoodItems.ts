@@ -21,7 +21,7 @@ export const initialFoodItems: FoodItem[] = [
   },
   {
     id: '3',
-    name: 'Caesar Salad',
+    name: 'Cheeseburger',
     description: 'Crispy romaine lettuce with homemade croutons and parmesan cheese',
     price: 14.99,
     image: 'https://images.pexels.com/photos/2282532/pexels-photo-2282532.jpeg?auto=compress&cs=tinysrgb&w=400',
