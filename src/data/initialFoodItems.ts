@@ -26,7 +26,7 @@ export const initialFoodItems: FoodItem[] = [
     price: 14.99,
     image: 'https://images.pexels.com/photos/2282532/pexels-photo-2282532.jpeg?auto=compress&cs=tinysrgb&w=400',
     type: 'Appetizer',
-    available: true
+    available: false
   },
   {
     id: '4',
@@ -39,10 +39,10 @@ export const initialFoodItems: FoodItem[] = [
   },
   {
     id: '5',
-    name: 'Craft Beer',
-    description: 'Local brewery selection of seasonal craft beers',
-    price: 6.99,
-    image: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=400',
+    name: 'Mojito Mocktail',
+    description: 'Fresh mint leaves with lime juice and sparkling water',
+    price: 7.99,
+    image: 'https://images.pexels.com/photos/4021887/pexels-photo-4021887.jpeg?_gl=1*19h4lpb*_ga*MTYzODEwMTc4LjE3NTAyNTM4MTU.*_ga_8JE65Q40S6*czE3NTAyNTM4MTUkbzEkZzEkdDE3NTAyNTUwNzUkajU5JGwwJGgw',
     type: 'Drink',
     available: true
   },
@@ -53,7 +53,7 @@ export const initialFoodItems: FoodItem[] = [
     price: 18.99,
     image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=400',
     type: 'Main Course',
-    available: false
+    available: true
   },
   {
     id: '7',
@@ -71,6 +71,15 @@ export const initialFoodItems: FoodItem[] = [
     price: 7.99,
     image: 'https://images.pexels.com/photos/6880219/pexels-photo-6880219.jpeg?auto=compress&cs=tinysrgb&w=400',
     type: 'Dessert',
+    available: true
+  },
+  {
+    id: '9',
+    name: 'Iced Tea',
+    description: 'Refreshing glass of iced tea, sweetened with sugar or not',
+    price: 2.99,
+    image: 'https://images.pexels.com/photos/1484678/pexels-photo-1484678.jpeg?_gl=1*15h4xjt*_ga*MTYzODEwMTc4LjE3NTAyNTM4MTU.*_ga_8JE65Q40S6*czE3NTAyNTM4MTUkbzEkZzEkdDE3NTAyNTM4NzgkajU5JGwwJGgw',
+    type: 'Drink',
     available: true
   }
 ];

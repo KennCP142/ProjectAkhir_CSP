@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  
+
   const cartItemCount = state.cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleAdminClick = () => {
@@ -39,24 +39,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <Link
+              {/* <Link
                 to="/"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === '/'
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/'
                     ? 'bg-orange-100 text-orange-700'
                     : 'text-gray-600 hover:text-orange-600'
-                }`}
+                  }`}
               >
                 Menu
-              </Link>
+              </Link> */}
               {state.isAdmin && (
                 <Link
                   to="/admin"
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === '/admin'
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/admin'
                       ? 'bg-orange-100 text-orange-700'
                       : 'text-gray-600 hover:text-orange-600'
-                  }`}
+                    }`}
                 >
                   Admin Panel
                 </Link>
@@ -90,11 +88,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ) : (
                 <button
                   onClick={handleAdminClick}
-                  className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors"
                 >
                   <User className="h-4 w-4" />
-                  <span>Admin</span>
+                  <span>Login</span>
                 </button>
+
               )}
             </div>
           </div>
