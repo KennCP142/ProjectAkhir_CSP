@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, ChefHat, LogOut } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import Cart from './Cart';
@@ -7,12 +7,22 @@ import Cart from './Cart';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { state, dispatch } = useApp();
   const location = useLocation();
+  const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   const cartItemCount = state.cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleAdminToggle = () => {
-    dispatch({ type: 'SET_ADMIN', payload: !state.isAdmin });
+  const handleAdminClick = () => {
+    if (state.isAdmin) {
+      navigate('/admin');
+    } else {
+      navigate('/admin-login');
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: 'SET_ADMIN', payload: false });
+    navigate('/');
   };
 
   return (
@@ -68,18 +78,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 )}
               </button>
 
-              {/* Admin Toggle */}
-              <button
-                onClick={handleAdminToggle}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  state.isAdmin
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                {state.isAdmin ? <LogOut className="h-4 w-4" /> : <User className="h-4 w-4" />}
-                <span>{state.isAdmin ? 'Exit Admin' : 'Admin'}</span>
-              </button>
+              {/* Admin Login/Logout */}
+              {state.isAdmin ? (
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 transition-colors"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleAdminClick}
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  <User className="h-4 w-4" />
+                  <span>Admin</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

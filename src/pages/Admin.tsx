@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Package, ClipboardList } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import FoodForm from '../components/FoodForm';
 import OrderManagement from '../components/OrderManagement';
 
 type AdminTab = 'menu' | 'orders';
 
 export default function Admin() {
-  const { state, dispatch } = useApp();
+  const { state } = useApp();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<AdminTab>('menu');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
+
+  // Redirect to login if not admin
+  if (!state.isAdmin) {
+    navigate('/admin-login');
+    return null;
+  }
 
   const handleEdit = (id: string) => {
     setEditingItem(id);
@@ -19,6 +27,7 @@ export default function Admin() {
 
   const handleDelete = (id: string) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
+      const { dispatch } = useApp();
       dispatch({ type: 'DELETE_FOOD_ITEM', payload: id });
     }
   };
@@ -28,19 +37,14 @@ export default function Admin() {
     setIsFormOpen(true);
   };
 
-  if (!state.isAdmin) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">Access denied. Please login as admin.</p>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
+          <p className="text-gray-600 mt-1">Manage your restaurant's menu and orders</p>
+        </div>
         
         {/* Tab Navigation */}
         <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
